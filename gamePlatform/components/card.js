@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image, TouchableOpacity, StyleSheet } from "react-native";
 
-function Card({ image, flipped, chooseCard }) {
+function Card({ image, flipped, chooseCard, level }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,9 @@ function Card({ image, flipped, chooseCard }) {
 
   return (
     <TouchableOpacity
-      style={[styles.card, flipped ? styles.matched : null]}
+      style={[level === 'easy' ? styles.cardEasy : (
+        level === 'medium' ? styles.cardMedium : styles.cardHard),
+        flipped ? styles.matched : null]}
       onPress={cardClickHandle}
     >
       {!flipped && !isFlipped ? (
@@ -51,9 +53,41 @@ function Card({ image, flipped, chooseCard }) {
 }
 
 const styles = StyleSheet.create({
-  card: {
+  cardEasy: {
     width: 100,
     height: 120,
+    backgroundColor: "white",
+    borderRadius: 10,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    transformStyle: "preserve-3d",
+    transitionProperty: "transform",
+    transitionDuration: ".7s",
+    borderColor: "rgba(160, 160, 160, 0.75)",
+    borderWidth: 1,
+    cursor: "pointer",
+  },
+  cardMedium: {
+    width: 50,
+    height: 60,
+    backgroundColor: "white",
+    borderRadius: 10,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    transformStyle: "preserve-3d",
+    transitionProperty: "transform",
+    transitionDuration: ".7s",
+    borderColor: "rgba(160, 160, 160, 0.75)",
+    borderWidth: 1,
+    cursor: "pointer",
+  },
+  cardHard: {
+    width: 70,
+    height: 90,
     backgroundColor: "white",
     borderRadius: 10,
     display: "flex",
@@ -71,8 +105,8 @@ const styles = StyleSheet.create({
     transform: [{ rotateY: "180deg" }],
   },
   questionMark: {
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
   },
   cardImage: {
     width: 80,

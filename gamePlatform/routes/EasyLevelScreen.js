@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 const bgImage = require("../assets/rainbow-vortex.svg");
-
+const level = 'easy'
 export default function EasyGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
@@ -88,6 +88,7 @@ export default function EasyGameScreen({ navigation }) {
                   {images.map((image, key) => {
                     return (
                       <Card
+                        level={level}
                         key={key}
                         chooseCard={chooseCard}
                         flipped={
