@@ -1,50 +1,25 @@
-import { StatusBar } from "expo-status-bar";
-import { Button, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./routes/HomeScreen";
+import LevelsScreen from "./routes/LevelsScreen";
+import SettingsScreen from "./routes/SettingsScreen";
+import AboutUsScreen from "./routes/AboutUsScreen";
+import GameScreen from "./routes/GameScreen";
 
-const image = require("./assets/rainbow-vortex.svg");
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.background}>
-        <Text style={styles.appTitle}>Gra pamięciowa</Text>
-        <TouchableOpacity style={styles.buttons}>
-          <Text style={styles.buttonsText}>Zacznij grę</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttons}>
-          <Text style={styles.buttonsText}>Ustawienia</Text>
-        </TouchableOpacity>
-        <StatusBar style="auto" />
-      </ImageBackground>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="Levels" component={LevelsScreen}/>
+        <Stack.Screen name="Settings" component={SettingsScreen}/>
+        <Stack.Screen name="AboutUs" component={AboutUsScreen}/>
+        <Stack.Screen name="Game" component={GameScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  background: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  appTitle: {
-    color: '#fff',
-    fontSize: 48,
-  },
-  buttons: {
-    backgroundColor: '#f4a44e',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 5,
-    width: 300,
-  },
-  buttonsText: {
-    color: '#fff',
-    fontSize: 24,
-    textAlign: 'center',
-  },
-});
