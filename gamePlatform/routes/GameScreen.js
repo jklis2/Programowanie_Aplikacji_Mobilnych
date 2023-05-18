@@ -1,6 +1,7 @@
-import { StatusBar } from "expo-status-bar";
 import { useState, useEffect } from "react";
 import Card from "../components/card";
+import { allMemoryImages } from "../image";
+
 import {
   ImageBackground,
   StyleSheet,
@@ -8,18 +9,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import allImagesJson from "../images.json";
+
 const bgImage = require("../assets/rainbow-vortex.svg");
 
-// const airplane = require("../assets/images/Airplane.png")
-// const anubis = require("../assets/images/Anubis.png")
-// const beer = require("../assets/images/Beer.png")
-// const bigben = require("../assets/images/BigBen.png")
-
-// const allImagesJson = [airplane, anubis, beer, bigben]
-
 export default function GameScreen({ navigation }) {
-  const imagesItems = allImagesJson
+  const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 4);
 
@@ -29,6 +23,7 @@ export default function GameScreen({ navigation }) {
   const [noOfMatched, setNoOfMatched] = useState(0);
 
   const chooseCard = (image) => {
+
     if (!image.matched && !imageOne && !imageTwo) {
       setImageOne(image);
     } else if (
@@ -90,6 +85,7 @@ export default function GameScreen({ navigation }) {
               {images.length ? (
                 <View style={styles.gameBlock}>
                   {images.map((image, key) => {
+                    {console.log(image)}
                     return (
                       <Card
                         key={key}
