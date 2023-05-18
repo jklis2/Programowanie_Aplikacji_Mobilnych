@@ -12,7 +12,7 @@ import {
 
 const bgImage = require("../assets/rainbow-vortex.svg");
 
-export default function GameScreen({ navigation }) {
+export default function EasyGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 3);

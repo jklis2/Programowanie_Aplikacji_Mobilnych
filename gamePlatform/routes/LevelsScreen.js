@@ -22,7 +22,7 @@ import {
           <View style={styles.buttonGroup}>
             <TouchableOpacity
               style={styles.buttons}
-              onPress={() => navigation.navigate("Game")}
+              onPress={() => navigation.navigate("EasyGame")}
             >
               <Text style={styles.buttonsText}>Łatwy</Text>
             </TouchableOpacity>
