@@ -15,7 +15,8 @@ const bgImage = require("../assets/rainbow-vortex.svg");
 export default function GameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
-    .slice(0, 4);
+    .slice(0, 3);
+    //ilosc kart/2
 
   const [images, setImages] = useState([]);
   const [imageOne, setImageOne] = useState(null);
@@ -37,7 +38,7 @@ export default function GameScreen({ navigation }) {
   };
 
   const initGame = () => {
-    const cards = 4;
+    const cards = 6;
     const allImages = [...imagesItems, ...imagesItems]
       .sort(() => Math.random() - 0.5)
       .slice(0, cards)
@@ -85,7 +86,6 @@ export default function GameScreen({ navigation }) {
               {images.length ? (
                 <View style={styles.gameBlock}>
                   {images.map((image, key) => {
-                    {console.log(image)}
                     return (
                       <Card
                         key={key}
@@ -120,6 +120,7 @@ export default function GameScreen({ navigation }) {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 5,
     width: 300,
+    marginBottom: 20
   },
   buttonsText: {
     color: "#fff",
@@ -155,6 +157,7 @@ const styles = StyleSheet.create({
   memoryBoard: {
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
     marginTop: 24,
     backgroundColor: "#fff",
     borderRadius: 8,
@@ -171,6 +174,6 @@ const styles = StyleSheet.create({
     padding: 10,
     gap: 16,
     display: "grid",
-    gridTemplateColumns: "repeat(4, auto)",
+    gridTemplateColumns: "repeat(2, auto)",
   },
 });
