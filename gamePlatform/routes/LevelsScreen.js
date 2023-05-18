@@ -29,14 +29,14 @@ import {
   
             <TouchableOpacity
               style={styles.buttons}
-              onPress={() => navigation.navigate("Game")}
+              onPress={() => navigation.navigate("MediumGame")}
             >
               <Text style={styles.buttonsText}>Średni</Text>
             </TouchableOpacity>
   
             <TouchableOpacity
               style={styles.buttons}
-              onPress={() => navigation.navigate("Game")}
+              onPress={() => navigation.navigate("HardGame")}
             >
               <Text style={styles.buttonsText}>Trudny</Text>
             </TouchableOpacity>
