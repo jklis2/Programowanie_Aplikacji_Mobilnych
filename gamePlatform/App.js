@@ -5,6 +5,8 @@ import LevelsScreen from "./routes/LevelsScreen";
 import SettingsScreen from "./routes/SettingsScreen";
 import AboutUsScreen from "./routes/AboutUsScreen";
 import GameScreen from "./routes/GameScreen";
+import MediumLevelScreen from "./routes/MediumLevelScreen";
+import HardLevelScreen from "./routes/HardLevelScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,8 @@ export default function App() {
         <Stack.Screen name="Settings" component={SettingsScreen}/>
         <Stack.Screen name="AboutUs" component={AboutUsScreen}/>
         <Stack.Screen name="Game" component={GameScreen}/>
+        <Stack.Screen name="MediumGame" component={MediumLevelScreen}/>
+        <Stack.Screen name="HardGame" component={HardLevelScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
