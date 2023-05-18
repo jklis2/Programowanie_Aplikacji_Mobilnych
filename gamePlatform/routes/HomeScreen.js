@@ -25,18 +25,20 @@ export default function HomeScreen({ navigation }) {
         >
           <Text style={styles.buttonsText}>Zacznij grę</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttons}
-          onPress={() => navigation.navigate("Settings")}
-        >
-          <Text style={styles.buttonsText}>Ustawienia</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttons}
-          onPress={() => navigation.navigate("AboutUs")}
-        >
-          <Text style={styles.buttonsText}>O nas</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonGroup}>
+          <TouchableOpacity
+            style={styles.buttons}
+            onPress={() => navigation.navigate("Settings")}
+          >
+            <Text style={styles.buttonsText}>Ustawienia</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttons}
+            onPress={() => navigation.navigate("AboutUs")}
+          >
+            <Text style={styles.buttonsText}>O nas</Text>
+          </TouchableOpacity>
+        </View>
         <StatusBar style="auto" />
       </ImageBackground>
     </View>
@@ -64,10 +66,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 5,
     width: 300,
+    marginBottom: 10,
   },
   buttonsText: {
     color: "#fff",
     fontSize: 24,
     textAlign: "center",
+  },
+  buttonGroup: {
+    alignItems: "center",
   },
 });
