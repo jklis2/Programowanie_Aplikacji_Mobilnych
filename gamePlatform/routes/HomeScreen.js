@@ -18,7 +18,7 @@ export default function HomeScreen({ navigation }) {
         resizeMode="cover"
         style={styles.background}
       >
-        <Text style={styles.appTitle}>Gra pamięciowa</Text>
+        <Text style={styles.appTitle}>Gra Memory</Text>
         <TouchableOpacity
           style={styles.buttons}
           onPress={() => navigation.navigate("Levels")}
