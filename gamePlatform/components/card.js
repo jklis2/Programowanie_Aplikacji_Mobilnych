@@ -43,7 +43,7 @@ function Card({ image, flipped, chooseCard, level }) {
         />
       ) : (
         <Image
-          style={styles.cardImage}
+          style={level === 'hard' ? styles.cardImageHard : styles.cardImageEasy}
           source={{ uri: image.src }}
           resizeMode="contain"
         />
@@ -108,9 +108,17 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
   },
-  cardImage: {
+  cardImageEasy: {
     width: 80,
     height: 80,
+  },
+  cardImageMedium: {
+    width: 70,
+    height: 70,
+  },
+  cardImageHard: {
+    width: 60,
+    height: 60,
   },
 });
 

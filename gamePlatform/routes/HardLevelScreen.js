@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     fontSize: 48,
   },
   buttons: {
-    marginTop: 20,
+    marginTop: 15,
     backgroundColor: "#f4a44e",
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   buttonsText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 16,
     textAlign: "center",
   },
   memoryBoardContainer: {
