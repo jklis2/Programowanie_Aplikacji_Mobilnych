@@ -36,7 +36,7 @@ export default function HomeScreen({ navigation }) {
             style={styles.buttons}
             onPress={() => navigation.navigate("AboutUs")}
           >
-            <Text style={styles.buttonsText}>O nas</Text>
+            <Text style={styles.buttonsText}>O aplikacji</Text>
           </TouchableOpacity>
         </View>
         <StatusBar style="auto" />

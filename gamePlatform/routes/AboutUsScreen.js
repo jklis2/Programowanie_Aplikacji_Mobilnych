@@ -17,7 +17,7 @@ export default function AboutUsScreen({ navigation }) {
         resizeMode="cover"
         style={styles.background}
       >
-        <Text style={styles.appTitle}>O nas</Text>
+        <Text style={styles.appTitle}>O aplikacji</Text>
 
         <Text style={styles.text}>
           Memory to gra, w której gracze muszą odnaleźć pary kart, ukrytych
