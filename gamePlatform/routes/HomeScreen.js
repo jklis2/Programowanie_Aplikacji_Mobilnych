@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import {
-  Button,
   ImageBackground,
   StyleSheet,
   Text,
@@ -8,7 +7,7 @@ import {
   View,
 } from "react-native";
 
-const image = require("../assets/rainbow-vortex.svg");
+const image = require("../assets/rainbow-vortex.png");
 
 export default function HomeScreen({ navigation }) {
   return (
