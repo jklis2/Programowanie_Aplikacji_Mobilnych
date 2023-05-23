@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 
-const bgImage = require("../assets/rainbow-vortex.svg");
+const bgImage = require("../assets/rainbow-vortex.png");
 
 export default function HardGameScreen({ navigation }) {
   const imagesItems = allMemoryImages

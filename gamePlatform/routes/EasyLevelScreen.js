@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 
-const bgImage = require("../assets/rainbow-vortex.svg");
+const bgImage = require("../assets/rainbow-vortex.png");
 const level = 'easy'
 export default function EasyGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
