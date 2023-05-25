@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "../components/card";
 import { allMemoryImages } from "../image";
-import WinModal from '../components/winModal'
+import WinModal from "../components/winModal";
 
 import {
   ImageBackground,
@@ -66,7 +66,7 @@ export default function EasyGameScreen({ navigation }) {
   useEffect(() => {
     console.log(noOfMatched, imagesItems.length);
     if (noOfMatched === imagesItems.length) {
-      setModalVisible(true)
+      setModalVisible(true);
       console.log("You won!");
     }
 
@@ -94,57 +94,64 @@ export default function EasyGameScreen({ navigation }) {
 
   return (
     <>
-      {modalVisible ? (
-        <WinModal modalVisible={modalVisible} setNoOfMatched={setNoOfMatched} setModalVisible={setModalVisible} initGame={initGame}></WinModal>
-      ) : (
-        <View style={styles.container}>
-          <ImageBackground
-            source={bgImage}
-            resizeMode="cover"
-            style={styles.background}
-          >
-            <View style={styles.memoryBoardContainer}>
-              <View style={styles.memoryBoard}>
-                <View>
-                  {images.length ? (
-                    <View style={styles.gameBlock}>
-                      {images.map((image, key) => {
-                        {
-                          console.log(image);
-                        }
-                        return (
-                          <Card
-                            level={level}
-                            key={key}
-                            chooseCard={chooseCard}
-                            flipped={
-                              image === imageOne ||
-                              image === imageTwo ||
-                              image.matched
-                            }
-                            image={image}
-                          />
-                        );
-                      })}
-                    </View>
-                  ) : (
-                    <></>
-                  )}
+      <View style={styles.container}>
+        <ImageBackground
+          source={bgImage}
+          resizeMode="cover"
+          style={styles.background}
+        >
+          {modalVisible ? (
+            <WinModal
+              modalVisible={modalVisible}
+              setNoOfMatched={setNoOfMatched}
+              setModalVisible={setModalVisible}
+              initGame={initGame}
+            ></WinModal>
+          ) : (
+            <>
+              <View style={styles.memoryBoardContainer}>
+                <View style={styles.memoryBoard}>
+                  <View>
+                    {images.length ? (
+                      <View style={styles.gameBlock}>
+                        {images.map((image, key) => {
+                          {
+                            console.log(image);
+                          }
+                          return (
+                            <Card
+                              level={level}
+                              key={key}
+                              chooseCard={chooseCard}
+                              flipped={
+                                image === imageOne ||
+                                image === imageTwo ||
+                                image.matched
+                              }
+                              image={image}
+                            />
+                          );
+                        })}
+                      </View>
+                    ) : (
+                      <></>
+                    )}
+                  </View>
                 </View>
               </View>
-            </View>
 
-            <TouchableOpacity
-              style={styles.buttons}
-              onPress={() => navigation.navigate("Levels")}
-            >
-              <Text style={styles.buttonsText}>
-                Wróć do wyboru poziomu trudności
-              </Text>
-            </TouchableOpacity>
-          </ImageBackground>
-        </View>
-      )}
+              <TouchableOpacity
+                style={styles.buttons}
+                onPress={() => navigation.navigate("Levels")}
+              >
+                <Text style={styles.buttonsText}>
+                  Wróć do wyboru poziomu trudności
+                </Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </ImageBackground>
+      </View>
     </>
   );
 }

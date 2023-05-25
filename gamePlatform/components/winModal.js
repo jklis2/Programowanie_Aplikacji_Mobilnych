@@ -6,7 +6,22 @@ export default function WinModal({setNoOfMatched, initGame, modalVisible, setMod
   return (
     <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+            <Text style={styles.modalText}>Wygrałeś! 🎉</Text>
+            <Text style={styles.modalText}>Twój czas: 00:00:15</Text>
+            <Text style={styles.modalText}>Zajmujesz 10 miejsce w rankingu globalnym</Text>
+            <View
+              style={{
+                borderBottomColor: 'gray',
+                borderBottomWidth: 2,
+                height: 1,
+                width: 275,
+                margin: 10
+              }}> 
+            </View>
+            <Text style={styles.modalText}>🏆 Najlepsze wyniki: 🏆</Text>
+            <Text style={styles.modalText}>1. Marcin - 00:00:05</Text>
+            <Text style={styles.modalText}>2. Janek - 00:00:07</Text>
+            <Text style={styles.modalText}>3. Filip - 00:00:08</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
@@ -21,7 +36,7 @@ export default function WinModal({setNoOfMatched, initGame, modalVisible, setMod
                 initGame();
                 setNoOfMatched(0);
                 
-              }}>Hide Modal</Text>
+              }}>Zagraj ponownie</Text>
             </Pressable>
           </View>
         </View>
@@ -56,10 +71,11 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "#f4a44e",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#f4a44e",
+    marginTop: 10
   },
   textStyle: {
     color: "white",
