@@ -72,7 +72,7 @@ export default function EasyGameScreen({ navigation }) {
       setTimeout(() => {
         setImageOne(null);
         setImageTwo(null);
-      }, 500);
+      }, 100);
     }
     // eslint-disable-next-line
   }, [imageOne, imageTwo]);
@@ -86,6 +86,7 @@ export default function EasyGameScreen({ navigation }) {
               {images.length ? (
                 <View style={styles.gameBlock}>
                   {images.map((image, key) => {
+                    {console.log(image)}
                     return (
                       <Card
                         level={level}
@@ -172,9 +173,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   gameBlock: {
-    padding: 10,
-    gap: 16,
-    display: "grid",
-    gridTemplateColumns: "repeat(2, auto)",
+    flex: 1,
+    flexWrap: 'wrap',
+    padding: 5,
   },
 });

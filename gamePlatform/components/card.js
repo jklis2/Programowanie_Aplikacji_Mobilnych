@@ -44,7 +44,7 @@ function Card({ image, flipped, chooseCard, level }) {
       ) : (
         <Image
           style={level === 'hard' ? styles.cardImageHard : styles.cardImageEasy}
-          source={{ uri: image.src }}
+          source={ image.src }
           resizeMode="contain"
         />
       )}
