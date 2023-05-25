@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "../components/card";
 import { allMemoryImages } from "../image";
+import winModal from "../components/winModal"
 
 import {
   ImageBackground,
@@ -64,7 +65,9 @@ export default function EasyGameScreen({ navigation }) {
   useEffect(() => {
     console.log(noOfMatched, imagesItems.length)
     if (noOfMatched === imagesItems.length) {
-      console.log("You won!");
+      return(<winModal/>)
+      
+      // console.log("You won!");
     }
 
     if (imageOne && imageTwo) {
