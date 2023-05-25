@@ -52,7 +52,7 @@ export default function SettingsScreen({ navigation }) {
           </View>
           <View style={styles.settingItem}>
             <Text style={styles.settingsText}>Mój pseudonim:</Text>
-            <TextInput style={styles.input}>sss</TextInput>
+            <TextInput style={styles.input}>Gracz</TextInput>
           </View>
         </View>
         <TouchableOpacity

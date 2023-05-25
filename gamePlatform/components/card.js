@@ -68,25 +68,10 @@ const styles = StyleSheet.create({
     borderColor: "rgba(160, 160, 160, 0.75)",
     borderWidth: 1,
     cursor: "pointer",
+    margin: 5
   },
   cardMedium: {
-    width: 50,
-    height: 60,
-    backgroundColor: "white",
-    borderRadius: 10,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    transformStyle: "preserve-3d",
-    transitionProperty: "transform",
-    transitionDuration: ".7s",
-    borderColor: "rgba(160, 160, 160, 0.75)",
-    borderWidth: 1,
-    cursor: "pointer",
-  },
-  cardHard: {
-    width: 70,
+    width: 80,
     height: 90,
     backgroundColor: "white",
     borderRadius: 10,
@@ -100,6 +85,24 @@ const styles = StyleSheet.create({
     borderColor: "rgba(160, 160, 160, 0.75)",
     borderWidth: 1,
     cursor: "pointer",
+    margin: 5
+  },
+  cardHard: {
+    width: 60,
+    height: 70,
+    backgroundColor: "white",
+    borderRadius: 10,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    transformStyle: "preserve-3d",
+    transitionProperty: "transform",
+    transitionDuration: ".7s",
+    borderColor: "rgba(160, 160, 160, 0.75)",
+    borderWidth: 1,
+    cursor: "pointer",
+    margin: 3
   },
   matched: {
     transform: [{ rotateY: "180deg" }],
@@ -117,8 +120,8 @@ const styles = StyleSheet.create({
     height: 70,
   },
   cardImageHard: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
   },
 });
 

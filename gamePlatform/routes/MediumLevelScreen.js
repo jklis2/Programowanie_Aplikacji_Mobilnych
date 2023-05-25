@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "../components/card";
 import { allMemoryImages } from "../image";
+import WinModal from "../components/winModal";
 
 import {
   ImageBackground,
@@ -11,22 +12,20 @@ import {
 } from "react-native";
 
 const bgImage = require("../assets/rainbow-vortex.png");
-
-export default function MediumGameScreen({ navigation }) {
+const level = "medium";
+export default function EasyGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 6);
-    //ilosc kart/2
+  //ilosc kart/2
 
-  const level = 'hard';
-
+  const [modalVisible, setModalVisible] = useState(false);
   const [images, setImages] = useState([]);
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
   const [noOfMatched, setNoOfMatched] = useState(0);
 
   const chooseCard = (image) => {
-
     if (!image.matched && !imageOne && !imageTwo) {
       setImageOne(image);
     } else if (
@@ -52,8 +51,9 @@ export default function MediumGameScreen({ navigation }) {
   useEffect(() => initGame(), []);
 
   useEffect(() => {
-    console.log(noOfMatched, imagesItems.length)
+    console.log(noOfMatched, imagesItems.length);
     if (noOfMatched === imagesItems.length) {
+      setModalVisible(true);
       console.log("You won!");
     }
 
@@ -74,56 +74,74 @@ export default function MediumGameScreen({ navigation }) {
       setTimeout(() => {
         setImageOne(null);
         setImageTwo(null);
-      }, 500);
+      }, 100);
     }
     // eslint-disable-next-line
   }, [imageOne, imageTwo]);
 
   return (
-    <View style={styles.container}>
-      <ImageBackground source={bgImage} resizeMode="cover" style={styles.background}>
-        <View style={styles.memoryBoardContainer}>
-          <View style={styles.memoryBoard}>
-            <View>
-              {images.length ? (
-                <View style={styles.gameBlock}>
-                  {images.map((image, key) => {
-                    return (
-                      <Card
-                        level={level}
-                        style={{width: 20, height: 30}}
-                        key={key}
-                        chooseCard={chooseCard}
-                        flipped={
-                          image === imageOne ||
-                          image === imageTwo ||
-                          image.matched
-                        }
-                        image={image}
-                      />
-                    );
-                  })}
-                </View>
-              ) : (
-                <></>
-              )}
-            </View>
-          </View>
-        </View>
-
-        <TouchableOpacity
-          style={styles.buttons}
-          onPress={() => navigation.navigate("Levels")}
+    <>
+      <View style={styles.container}>
+        <ImageBackground
+          source={bgImage}
+          resizeMode="cover"
+          style={styles.background}
         >
-          <Text style={styles.buttonsText}>
-            Wróć do wyboru poziomu trudności
-          </Text>
-        </TouchableOpacity>
-      </ImageBackground>
-    </View>
+          {modalVisible ? (
+            <WinModal
+              modalVisible={modalVisible}
+              setNoOfMatched={setNoOfMatched}
+              setModalVisible={setModalVisible}
+              initGame={initGame}
+            ></WinModal>
+          ) : (
+            <>
+              <View style={styles.memoryBoardContainer}>
+                <View style={styles.memoryBoard}>
+                  <View>
+                    {images.length ? (
+                      <View style={styles.gameBlock}>
+                        {images.map((image, key) => {
+                          {
+                            console.log(image);
+                          }
+                          return (
+                            <Card
+                              level={level}
+                              key={key}
+                              chooseCard={chooseCard}
+                              flipped={
+                                image === imageOne ||
+                                image === imageTwo ||
+                                image.matched
+                              }
+                              image={image}
+                            />
+                          );
+                        })}
+                      </View>
+                    ) : (
+                      <></>
+                    )}
+                  </View>
+                </View>
+              </View>
+
+              <TouchableOpacity
+                style={styles.buttons}
+                onPress={() => navigation.navigate("Levels")}
+              >
+                <Text style={styles.buttonsText}>
+                  Wróć do wyboru poziomu trudności
+                </Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </ImageBackground>
+      </View>
+    </>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -141,13 +159,12 @@ const styles = StyleSheet.create({
     fontSize: 48,
   },
   buttons: {
-    marginTop: 15,
     backgroundColor: "#f4a44e",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 5,
     width: 300,
-    marginBottom: 30
+    marginBottom: 20,
   },
   buttonsText: {
     color: "#fff",
@@ -160,25 +177,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   memoryBoard: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column",
-    marginTop: 10,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 4,
-      height: 4,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 0,
-    elevation: 2,
-  },
+    flexDirection: "column", 
+    marginTop: 24,
+    height: 100
+  },  
   gameBlock: {
-    padding: 4,
-    gap: 4,
-    display: "grid",
-    gridTemplateColumns: "repeat(3, auto)",
+    justifyContent: "center",
+    flexBasis: "80%",
+    flexWrap: 'wrap',
+    margin: 120,
+    padding: 30
   },
 });

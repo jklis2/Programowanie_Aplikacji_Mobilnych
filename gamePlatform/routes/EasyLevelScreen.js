@@ -24,7 +24,6 @@ export default function EasyGameScreen({ navigation }) {
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
   const [noOfMatched, setNoOfMatched] = useState(0);
-  const [win, setWin] = useState(false);
 
   // Request do bazy
   // useEffect(() => {
@@ -190,24 +189,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   memoryBoard: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column",
+    flexDirection: "column", 
     marginTop: 24,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 4,
-      height: 4,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 0,
-    elevation: 2,
-  },
+    height: 100
+  },  
   gameBlock: {
-    flex: 1,
-    flexWrap: "wrap",
-    padding: 5,
+    justifyContent: "center",
+    flexBasis: "80%",
+    flexWrap: 'wrap',
+    margin: 120,
+    padding: 30
   },
 });
