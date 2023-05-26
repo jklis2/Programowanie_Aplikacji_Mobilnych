@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Switch,
   ImageBackground,
@@ -8,12 +8,44 @@ import {
   View,
   TextInput,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const image = require("../assets/rainbow-vortex.png");
 
 export default function SettingsScreen({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const savedUser = await AsyncStorage.getItem("user");
+        const currentUser = JSON.parse(savedUser);
+        setIsEnabled(currentUser.consent);
+        setUserName(currentUser.name);
+        console.log(currentUser)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUser();
+  }, [])
+
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  const userObj = {
+    name: userName,
+    consent: isEnabled,
+  };
+
+  const setUser = async () => {
+    try {
+      console.log(userObj);
+      await AsyncStorage.setItem("user", JSON.stringify(userObj));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -52,12 +84,14 @@ export default function SettingsScreen({ navigation }) {
           </View>
           <View style={styles.settingItem}>
             <Text style={styles.settingsText}>Mój pseudonim:</Text>
-            <TextInput style={styles.input}>Gracz</TextInput>
+            <TextInput
+              onChangeText={(text) => setUserName(text)}
+              style={styles.input}
+              value={userName}
+            ></TextInput>
           </View>
         </View>
-        <TouchableOpacity
-          style={styles.buttons}
-        >
+        <TouchableOpacity style={styles.buttons} onPress={setUser}>
           <Text style={styles.buttonsText}>Zapisz zmiany</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -104,13 +138,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 20,
-    flexWrap: 'wrap'
+    flexWrap: "wrap",
   },
   settingItem: {
     flexDirection: "row",
     alignItems: "center",
     paddingBottom: 40,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
   },
   settingsText: {
     color: "#fff",
@@ -123,6 +157,6 @@ const styles = StyleSheet.create({
     margin: 12,
     padding: 10,
     borderRadius: 8,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
 });

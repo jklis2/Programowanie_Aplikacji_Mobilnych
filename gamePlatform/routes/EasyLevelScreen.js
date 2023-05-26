@@ -24,18 +24,16 @@ export default function EasyGameScreen({ navigation }) {
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
   const [noOfMatched, setNoOfMatched] = useState(0);
+  const [time, setTime] = useState(0);
 
-  // Request do bazy
-  // useEffect(() => {
-  //   const res = fetch('https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/results.json', {
-  //     method: 'POST',
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(obj)
-  //   })
-  //   console.log(res)
-  // }, [])
+  let interval;
+  useEffect(() => {
+    interval = setInterval(() => {
+      setTime((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+    console.log(time)
+    return () => clearInterval(interval);
+  });
 
   const chooseCard = (image) => {
     if (!image.matched && !imageOne && !imageTwo) {
@@ -63,8 +61,8 @@ export default function EasyGameScreen({ navigation }) {
   useEffect(() => initGame(), []);
 
   useEffect(() => {
-    console.log(noOfMatched, imagesItems.length);
     if (noOfMatched === imagesItems.length) {
+      clearInterval(interval);
       setModalVisible(true);
       console.log("You won!");
     }
@@ -105,6 +103,8 @@ export default function EasyGameScreen({ navigation }) {
               setNoOfMatched={setNoOfMatched}
               setModalVisible={setModalVisible}
               initGame={initGame}
+              time = {time}
+              setTime = {setTime}
             ></WinModal>
           ) : (
             <>
@@ -114,9 +114,6 @@ export default function EasyGameScreen({ navigation }) {
                     {images.length ? (
                       <View style={styles.gameBlock}>
                         {images.map((image, key) => {
-                          {
-                            console.log(image);
-                          }
                           return (
                             <Card
                               level={level}
