@@ -22,6 +22,7 @@ import {
             <TouchableOpacity
               style={styles.buttons}
               onPress={() => navigation.navigate("EasyGame")}
+              testID="easy-button"
             >
               <Text style={styles.buttonsText}>Łatwy</Text>
             </TouchableOpacity>
@@ -29,6 +30,7 @@ import {
             <TouchableOpacity
               style={styles.buttons}
               onPress={() => navigation.navigate("MediumGame")}
+              testID="medium-button"
             >
               <Text style={styles.buttonsText}>Średni</Text>
             </TouchableOpacity>
@@ -36,6 +38,7 @@ import {
             <TouchableOpacity
               style={styles.buttons}
               onPress={() => navigation.navigate("HardGame")}
+              testID="hard-button"
             >
               <Text style={styles.buttonsText}>Trudny</Text>
             </TouchableOpacity>
@@ -44,6 +47,7 @@ import {
           <TouchableOpacity
             style={[styles.buttons, { marginTop: 20 }]}
             onPress={() => navigation.navigate("Home")}
+            testID="back-button"
           >
             <Text style={styles.buttonsText}>Wróć do strony głównej</Text>
           </TouchableOpacity>

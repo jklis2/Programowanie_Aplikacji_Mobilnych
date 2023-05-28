@@ -11,9 +11,10 @@ import {
   View,
 } from "react-native";
 
-const bgImage = require("../assets/rainbow-vortex.png");
-const level = "easy";
 export default function EasyGameScreen({ navigation }) {
+  const bgImage = require("../assets/rainbow-vortex.png");
+  const level = "easy";
+
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 3);
@@ -31,7 +32,7 @@ export default function EasyGameScreen({ navigation }) {
     interval = setInterval(() => {
       setTime((prevSeconds) => prevSeconds + 1);
     }, 1000);
-    console.log(time)
+    console.log(time);
     return () => clearInterval(interval);
   });
 
@@ -96,6 +97,7 @@ export default function EasyGameScreen({ navigation }) {
           source={bgImage}
           resizeMode="cover"
           style={styles.background}
+          testID="background-image"
         >
           {modalVisible ? (
             <WinModal
@@ -103,8 +105,8 @@ export default function EasyGameScreen({ navigation }) {
               setNoOfMatched={setNoOfMatched}
               setModalVisible={setModalVisible}
               initGame={initGame}
-              time = {time}
-              setTime = {setTime}
+              time={time}
+              setTime={setTime}
             ></WinModal>
           ) : (
             <>
@@ -116,6 +118,7 @@ export default function EasyGameScreen({ navigation }) {
                         {images.map((image, key) => {
                           return (
                             <Card
+                              testID={`card-${key}`}
                               level={level}
                               key={key}
                               chooseCard={chooseCard}
@@ -189,15 +192,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column", 
+    flexDirection: "column",
     marginTop: 24,
-    height: 100
-  },  
+    height: 100,
+  },
   gameBlock: {
     justifyContent: "center",
     flexBasis: "80%",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     margin: 120,
-    padding: 30
+    padding: 30,
   },
 });

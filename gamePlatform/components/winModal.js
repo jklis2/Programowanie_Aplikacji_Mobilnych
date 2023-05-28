@@ -37,8 +37,6 @@ export default function WinModal({
       })
     })
     console.log(res)
-
-    console.log(userToBase)
   }
 
   return (

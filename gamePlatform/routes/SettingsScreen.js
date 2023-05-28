@@ -59,6 +59,7 @@ export default function SettingsScreen({ navigation }) {
         <View style={styles.settings}>
           <View style={styles.settingItem}>
             <Switch
+              testID="switch-toggle"
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
@@ -72,6 +73,7 @@ export default function SettingsScreen({ navigation }) {
 
           <View style={styles.settingItem}>
             <Switch
+              testID="switch-toggle"
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
@@ -85,6 +87,7 @@ export default function SettingsScreen({ navigation }) {
           <View style={styles.settingItem}>
             <Text style={styles.settingsText}>Mój pseudonim:</Text>
             <TextInput
+              testID="user-name-input"
               onChangeText={(text) => setUserName(text)}
               style={styles.input}
               value={userName}
