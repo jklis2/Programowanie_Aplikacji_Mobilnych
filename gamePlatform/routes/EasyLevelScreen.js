@@ -18,22 +18,14 @@ export default function EasyGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 3);
-  //ilosc kart/2
 
   const [modalVisible, setModalVisible] = useState(false);
   const [images, setImages] = useState([]);
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
   const [noOfMatched, setNoOfMatched] = useState(0);
-  const [time, setTime] = useState(0);
+  const [time, _] = useState(Date.now());
 
-  let interval;
-  useEffect(() => {
-    interval = setInterval(() => {
-      setTime((prevSeconds) => prevSeconds + 1);
-    }, 1000);
-    return () => clearInterval(interval);
-  });
 
   const chooseCard = (image) => {
     if (!image.matched && !imageOne && !imageTwo) {
@@ -62,9 +54,6 @@ export default function EasyGameScreen({ navigation }) {
 
   useEffect(() => {
     if (noOfMatched === imagesItems.length) {
-      clearInterval(interval);
-      interval = undefined;
-      console.log(interval)
       setModalVisible(true);
     }
 
@@ -105,7 +94,6 @@ export default function EasyGameScreen({ navigation }) {
               setModalVisible={setModalVisible}
               initGame={initGame}
               time={time}
-              setTime={setTime}
               level={level}
             ></WinModal>
           ) : (

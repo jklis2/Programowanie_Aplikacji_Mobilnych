@@ -10,11 +10,12 @@ export default function WinModal({
   modalVisible,
   setModalVisible,
   time,
-  setTime,
   level,
 }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [results, setResults] = useState([]);
+  const currentTime = Date.now();
+  const finalTime = Math.floor((currentTime - time) / 1000, 0);
 
   useEffect(() => {
     fetch(
@@ -50,7 +51,7 @@ export default function WinModal({
         body: JSON.stringify({
           id: Date.now(),
           name: currentUser.name,
-          time: time,
+          time: finalTime,
         }),
       }
     );
@@ -61,9 +62,10 @@ export default function WinModal({
       <View style={styles.modalView}>
         <Text style={styles.modalText}>Wygrałeś! 🎉</Text>
         <Text style={styles.modalText}>
-          Twój czas: {String(Math.trunc(time / 3600)).padStart(2, 0)}:
-          {String(Math.trunc(time / 60)).padStart(2, 0)}:
-          {String(time % 60).padStart(2, 0)}
+          Twój czas:{" "}
+          {String(Math.trunc(finalTime / 3600 / 1000)).padStart(2, 0)}:
+          {String(Math.trunc(finalTime / 60)).padStart(2, 0)}:
+          {String(finalTime % 60).padStart(2, 0)}
         </Text>
 
         {currentUser && currentUser.consent && (
@@ -78,13 +80,16 @@ export default function WinModal({
               }}
             ></View>
             <Text style={styles.modalText}>🏆 Najlepsze wyniki: 🏆</Text>
-            {results.sort((a, b) => a.time - b.time).slice(0, 3).map((res, i) => (
-              <Text key={res.id}>
-                {i+1}. {res.name} -  {String(Math.trunc(res.time / 3600)).padStart(2, 0)}:
-                {String(Math.trunc(res.time / 60)).padStart(2, 0)}:
-                {String(res.time % 60).padStart(2, 0)}
-              </Text>
-            ))}
+            {results
+              .sort((a, b) => a.time - b.time)
+              .slice(0, 3)
+              .map((res, i) => (
+                <Text key={res.id}>
+                  {i + 1}. {res.name} - {String(Math.trunc(res.time / 3600 / 1000)).padStart(2, 0)}:
+                  {String(Math.trunc(res.time / 60)).padStart(2, 0)}:
+                  {String(res.time % 60).padStart(2, 0)}
+                </Text>
+              ))}
           </>
         )}
         <Pressable
@@ -95,10 +100,8 @@ export default function WinModal({
             style={styles.textStyle}
             onPress={() => {
               request();
-
               setModalVisible(!modalVisible);
               setNoOfMatched(0);
-              setTime(0);
               initGame();
             }}
           >

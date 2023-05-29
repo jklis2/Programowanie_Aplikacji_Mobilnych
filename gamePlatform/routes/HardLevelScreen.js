@@ -24,15 +24,7 @@ export default function HardGameScreen({ navigation }) {
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
   const [noOfMatched, setNoOfMatched] = useState(0);
-  const [time, setTime] = useState(0);
-
-  let interval;
-  useEffect(() => {
-    interval = setInterval(() => {
-      setTime((prevSeconds) => prevSeconds + 1);
-    }, 1000);
-    return () => clearInterval(interval);
-  });
+  const [time, _] = useState(Date.now());
 
   const chooseCard = (image) => {
     if (!image.matched && !imageOne && !imageTwo) {
@@ -61,7 +53,6 @@ export default function HardGameScreen({ navigation }) {
 
   useEffect(() => {
     if (noOfMatched === imagesItems.length) {
-      clearInterval(interval);
       setModalVisible(true);
     }
 
@@ -103,7 +94,6 @@ export default function HardGameScreen({ navigation }) {
               setModalVisible={setModalVisible}
               initGame={initGame}
               time={time}
-              setTime={setTime}
               level={level}
             ></WinModal>
           ) : (
