@@ -17,7 +17,7 @@ export default function MediumGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 6);
-  //ilosc kart/2
+  //ilość kart/2
 
   const [modalVisible, setModalVisible] = useState(false);
   const [images, setImages] = useState([]);
@@ -104,6 +104,7 @@ export default function MediumGameScreen({ navigation }) {
               initGame={initGame}
               time={time}
               setTime={setTime}
+              level={level}
             ></WinModal>
           ) : (
             <>

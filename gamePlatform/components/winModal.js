@@ -12,6 +12,7 @@ export default function WinModal({
   time,
   setTime,
   level,
+  level
 }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [results, setResults] = useState([]);
@@ -57,6 +58,15 @@ export default function WinModal({
     );
   };
 
+  const getScores = () => {
+    const req = fetch(`https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/${level}Results.json`)
+    .then(res => console.log(res.json()))
+  }
+
+  useEffect(() => {
+    getScores();
+  }, [])
+
   return (
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
@@ -81,6 +91,7 @@ export default function WinModal({
                 margin: 10,
               }}
             ></View>
+            {getScores()}
             <Text style={styles.modalText}>🏆 Najlepsze wyniki: 🏆</Text>
             {results.slice(0, 3).sort((a, b) => a.time - b.time).map((res, i) => (
               <Text key={res.id}>
