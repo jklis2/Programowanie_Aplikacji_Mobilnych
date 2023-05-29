@@ -69,9 +69,6 @@ export default function WinModal({
 
         {currentUser && currentUser.consent && (
           <>
-            <Text style={styles.modalText}>
-              Zajmujesz 10 miejsce w rankingu globalnym
-            </Text>
             <View
               style={{
                 borderBottomColor: "gray",
