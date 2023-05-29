@@ -24,6 +24,16 @@ export default function MediumGameScreen({ navigation }) {
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
   const [noOfMatched, setNoOfMatched] = useState(0);
+  const [time, setTime] = useState(0);
+
+  let interval;
+  useEffect(() => {
+    interval = setInterval(() => {
+      setTime((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  });
+
 
   const chooseCard = (image) => {
     if (!image.matched && !imageOne && !imageTwo) {
@@ -52,6 +62,7 @@ export default function MediumGameScreen({ navigation }) {
 
   useEffect(() => {
     if (noOfMatched === imagesItems.length) {
+      clearInterval(interval);
       setModalVisible(true);
     }
 
@@ -91,6 +102,8 @@ export default function MediumGameScreen({ navigation }) {
               setNoOfMatched={setNoOfMatched}
               setModalVisible={setModalVisible}
               initGame={initGame}
+              time={time}
+              setTime={setTime}
             ></WinModal>
           ) : (
             <>
