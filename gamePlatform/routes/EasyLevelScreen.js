@@ -118,7 +118,7 @@ export default function EasyGameScreen({ navigation }) {
                         {images.map((image, key) => {
                           return (
                             <Card
-                              testID={`card-${key}`}
+                             testID="card"
                               level={level}
                               key={key}
                               chooseCard={chooseCard}

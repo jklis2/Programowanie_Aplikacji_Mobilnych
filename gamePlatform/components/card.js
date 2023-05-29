@@ -30,6 +30,7 @@ function Card({ image, flipped, chooseCard, level }) {
 
   return (
     <TouchableOpacity
+      testID="card"
       style={[level === 'easy' ? styles.cardEasy : (
         level === 'medium' ? styles.cardMedium : styles.cardHard),
         flipped ? styles.matched : null]}
@@ -37,6 +38,7 @@ function Card({ image, flipped, chooseCard, level }) {
     >
       {!flipped && !isFlipped ? (
         <Image
+        testID="question-mark-image"
           style={styles.questionMark}
           source={questionMark}
           resizeMode="contain"
