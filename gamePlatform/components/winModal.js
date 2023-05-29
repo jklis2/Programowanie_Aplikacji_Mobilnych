@@ -10,9 +10,23 @@ export default function WinModal({
   modalVisible,
   setModalVisible,
   time,
-  setTime
+  setTime,
+  level,
 }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/${level}Results.json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(Object.values(data)); // Log the received data
+        setResults(Object.values(data));
+      });
+  }, []);
+
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -26,18 +40,22 @@ export default function WinModal({
   }, []);
 
   const request = () => {
-    const res = fetch('https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/results.json', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: currentUser.name,
-        time: time
-      })
-    })
-    console.log(res)
-  }
+    console.log(level);
+    const res = fetch(
+      `https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/${level}Results.json`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: Date.now(),
+          name: currentUser.name,
+          time: time,
+        }),
+      }
+    );
+  };
 
   return (
     <View style={styles.centeredView}>
@@ -64,9 +82,13 @@ export default function WinModal({
               }}
             ></View>
             <Text style={styles.modalText}>🏆 Najlepsze wyniki: 🏆</Text>
-            <Text style={styles.modalText}>1. Marcin - 00:00:05</Text>
-            <Text style={styles.modalText}>2. Janek - 00:00:07</Text>
-            <Text style={styles.modalText}>3. Filip - 00:00:08</Text>
+            {results.slice(0, 3).sort((a, b) => a.time - b.time).map((res, i) => (
+              <Text key={res.id}>
+                {i+1} {res.name} -  {String(Math.trunc(res.time / 3600)).padStart(2, 0)}:
+                {String(Math.trunc(res.time / 60)).padStart(2, 0)}:
+                {String(res.time % 60).padStart(2, 0)}
+              </Text>
+            ))}
           </>
         )}
         <Pressable
@@ -76,7 +98,6 @@ export default function WinModal({
           <Text
             style={styles.textStyle}
             onPress={() => {
-              
               request();
 
               setModalVisible(!modalVisible);
