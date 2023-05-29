@@ -104,6 +104,7 @@ export default function MediumGameScreen({ navigation }) {
               initGame={initGame}
               time={time}
               setTime={setTime}
+              level={level}
             ></WinModal>
           ) : (
             <>

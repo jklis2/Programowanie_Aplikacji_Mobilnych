@@ -98,12 +98,13 @@ export default function EasyGameScreen({ navigation }) {
         >
           {modalVisible ? (
             <WinModal
-              modalVisible={modalVisible}
-              setNoOfMatched={setNoOfMatched}
-              setModalVisible={setModalVisible}
-              initGame={initGame}
-              time={time}
-              setTime={setTime}
+            modalVisible={modalVisible}
+            setNoOfMatched={setNoOfMatched}
+            setModalVisible={setModalVisible}
+            initGame={initGame}
+            time={time}
+            setTime={setTime}
+            level={level}
             ></WinModal>
           ) : (
             <>

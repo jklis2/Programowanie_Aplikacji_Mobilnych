@@ -10,7 +10,8 @@ export default function WinModal({
   modalVisible,
   setModalVisible,
   time,
-  setTime
+  setTime,
+  level
 }) {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
@@ -26,18 +27,28 @@ export default function WinModal({
   }, []);
 
   const request = () => {
-    const res = fetch('https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/results.json', {
+    const res = fetch(`https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/${level}Results.json`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        id: Date.now(),
         name: currentUser.name,
         time: time
       })
     })
     console.log(res)
   }
+
+  const getScores = () => {
+    const req = fetch(`https://memorygame-ac96c-default-rtdb.europe-west1.firebasedatabase.app/${level}Results.json`)
+    .then(res => console.log(res.json()))
+  }
+
+  useEffect(() => {
+    getScores();
+  }, [])
 
   return (
     <View style={styles.centeredView}>
@@ -63,6 +74,7 @@ export default function WinModal({
                 margin: 10,
               }}
             ></View>
+            {getScores()}
             <Text style={styles.modalText}>🏆 Najlepsze wyniki: 🏆</Text>
             <Text style={styles.modalText}>1. Marcin - 00:00:05</Text>
             <Text style={styles.modalText}>2. Janek - 00:00:07</Text>
