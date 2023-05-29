@@ -63,6 +63,7 @@ export default function EasyGameScreen({ navigation }) {
   useEffect(() => {
     if (noOfMatched === imagesItems.length) {
       clearInterval(interval);
+      interval = undefined;
       setModalVisible(true);
     }
 
@@ -104,6 +105,7 @@ export default function EasyGameScreen({ navigation }) {
               initGame={initGame}
               time={time}
               setTime={setTime}
+              level={level}
             ></WinModal>
           ) : (
             <>
