@@ -93,7 +93,9 @@ export default function HardGameScreen({ navigation }) {
           source={bgImage}
           resizeMode="cover"
           style={styles.background}
+          testID="background-image"
         >
+
           {modalVisible ? (
             <WinModal
               modalVisible={modalVisible}
@@ -111,8 +113,6 @@ export default function HardGameScreen({ navigation }) {
                     {images.length ? (
                       <View style={styles.gameBlock}>
                         {images.map((image, key) => {
-                          {
-                          }
                           return (
                             <Card
                               level={level}

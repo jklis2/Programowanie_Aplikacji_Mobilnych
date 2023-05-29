@@ -94,6 +94,7 @@ export default function MediumGameScreen({ navigation }) {
           source={bgImage}
           resizeMode="cover"
           style={styles.background}
+          testID="background-image"
         >
           {modalVisible ? (
             <WinModal
