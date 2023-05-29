@@ -11,9 +11,9 @@ import {
   View,
 } from "react-native";
 
-const bgImage = require("../assets/rainbow-vortex.png");
-const level = "hard";
 export default function HardGameScreen({ navigation }) {
+  const bgImage = require("../assets/rainbow-vortex.png");
+  const level = "hard";
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 12);
@@ -86,7 +86,6 @@ export default function HardGameScreen({ navigation }) {
           style={styles.background}
           testID="background-image"
         >
-
           {modalVisible ? (
             <WinModal
               modalVisible={modalVisible}
@@ -179,15 +178,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column", 
+    flexDirection: "column",
     marginTop: 24,
-    height: 100
-  },  
+    height: 100,
+  },
   gameBlock: {
     justifyContent: "center",
     flexBasis: "90%",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     margin: 120,
-    padding: 30
+    padding: 30,
   },
 });
