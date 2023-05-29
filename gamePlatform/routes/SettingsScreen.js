@@ -23,9 +23,7 @@ export default function SettingsScreen({ navigation }) {
         const currentUser = JSON.parse(savedUser);
         setIsEnabled(currentUser.consent);
         setUserName(currentUser.name);
-        console.log(currentUser)
       } catch (err) {
-        console.log(err);
       }
     };
     getUser();
@@ -40,10 +38,8 @@ export default function SettingsScreen({ navigation }) {
 
   const setUser = async () => {
     try {
-      console.log(userObj);
       await AsyncStorage.setItem("user", JSON.stringify(userObj));
     } catch (err) {
-      console.log(err);
     }
   };
 

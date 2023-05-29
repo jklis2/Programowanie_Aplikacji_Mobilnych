@@ -51,16 +51,13 @@ export default function EasyGameScreen({ navigation }) {
   useEffect(() => initGame(), []);
 
   useEffect(() => {
-    console.log(noOfMatched, imagesItems.length);
     if (noOfMatched === imagesItems.length) {
       setModalVisible(true);
-      console.log("You won!");
     }
 
     if (imageOne && imageTwo) {
       if (imageOne.src === imageTwo.src) {
         setNoOfMatched((no) => (no += 1));
-        console.log(noOfMatched, imagesItems.length);
         setImages((prevImages) => {
           return prevImages.map((item) => {
             if (item.src === imageOne.src) {
@@ -103,7 +100,6 @@ export default function EasyGameScreen({ navigation }) {
                       <View style={styles.gameBlock}>
                         {images.map((image, key) => {
                           {
-                            console.log(image);
                           }
                           return (
                             <Card

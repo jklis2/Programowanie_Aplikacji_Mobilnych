@@ -32,7 +32,6 @@ export default function EasyGameScreen({ navigation }) {
     interval = setInterval(() => {
       setTime((prevSeconds) => prevSeconds + 1);
     }, 1000);
-    console.log(time);
     return () => clearInterval(interval);
   });
 
@@ -65,13 +64,11 @@ export default function EasyGameScreen({ navigation }) {
     if (noOfMatched === imagesItems.length) {
       clearInterval(interval);
       setModalVisible(true);
-      console.log("You won!");
     }
 
     if (imageOne && imageTwo) {
       if (imageOne.src === imageTwo.src) {
         setNoOfMatched((no) => (no += 1));
-        console.log(noOfMatched, imagesItems.length);
         setImages((prevImages) => {
           return prevImages.map((item) => {
             if (item.src === imageOne.src) {
