@@ -22,7 +22,6 @@ export default function WinModal({
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(Object.values(data)); // Log the received data
         setResults(Object.values(data));
       });
   }, []);
@@ -82,7 +81,7 @@ export default function WinModal({
               }}
             ></View>
             <Text style={styles.modalText}>🏆 Najlepsze wyniki: 🏆</Text>
-            {results.slice(0, 3).sort((a, b) => a.time - b.time).map((res, i) => (
+            {results.sort((a, b) => a.time - b.time).slice(0, 3).map((res, i) => (
               <Text key={res.id}>
                 {i+1} {res.name} -  {String(Math.trunc(res.time / 3600)).padStart(2, 0)}:
                 {String(Math.trunc(res.time / 60)).padStart(2, 0)}:

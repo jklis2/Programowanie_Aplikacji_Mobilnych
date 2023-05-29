@@ -64,6 +64,7 @@ export default function EasyGameScreen({ navigation }) {
     if (noOfMatched === imagesItems.length) {
       clearInterval(interval);
       interval = undefined;
+      console.log(interval)
       setModalVisible(true);
     }
 
