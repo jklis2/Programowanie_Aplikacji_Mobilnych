@@ -2,6 +2,7 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WinModal from "../components/winModal";
+import fetchMock from "jest-fetch-mock";
 
 jest.mock("@react-native-async-storage/async-storage", () => ({
   getItem: jest.fn(),
@@ -11,6 +12,10 @@ jest.mock("@react-native-async-storage/async-storage", () => ({
 describe("WinModal", () => {
   beforeAll(() => {
     AsyncStorage.getItem = jest.fn();
+  });
+
+  beforeEach(() => {
+    fetchMock.resetMocks();
   });
 
   it("should render the modal with correct text and buttons", () => {
@@ -28,7 +33,7 @@ describe("WinModal", () => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         time={time}
-        setTime={setTime}
+        level={"easy"}
       />
     );
 
@@ -51,7 +56,7 @@ describe("WinModal", () => {
         modalVisible={true}
         setModalVisible={() => {}}
         time={120}
-        setTime={() => {}}
+        level={"easy"}
       />
     );
 
@@ -68,11 +73,28 @@ describe("WinModal", () => {
         modalVisible={true}
         setModalVisible={() => {}}
         time={120}
-        setTime={() => {}}
+        level={"easy"}
       />
     );
 
     expect(AsyncStorage.getItem).toHaveBeenCalledWith("user");
     expect(queryByText("Zajmujesz 10 miejsce w rankingu globalnym")).toBeNull();
+  });
+
+  it("should handle error when retrieving results", async () => {
+    fetchMock.mockRejectOnce(new Error("Fetch error"));
+
+    const { queryByText } = render(
+      <WinModal
+        setNoOfMatched={() => {}}
+        initGame={() => {}}
+        modalVisible={true}
+        setModalVisible={() => {}}
+        time={120}
+        level={"easy"}
+      />
+    );
+
+    expect(queryByText("Najlepsze wyniki:")).toBeNull();
   });
 });
