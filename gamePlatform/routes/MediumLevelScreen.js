@@ -13,7 +13,7 @@ import {
 
 const bgImage = require("../assets/rainbow-vortex.png");
 const level = "medium";
-export default function EasyGameScreen({ navigation }) {
+export default function MediumGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 6);
@@ -24,6 +24,16 @@ export default function EasyGameScreen({ navigation }) {
   const [imageOne, setImageOne] = useState(null);
   const [imageTwo, setImageTwo] = useState(null);
   const [noOfMatched, setNoOfMatched] = useState(0);
+  const [time, setTime] = useState(0);
+
+  let interval;
+  useEffect(() => {
+    interval = setInterval(() => {
+      setTime((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  });
+
 
   const chooseCard = (image) => {
     if (!image.matched && !imageOne && !imageTwo) {
@@ -52,6 +62,7 @@ export default function EasyGameScreen({ navigation }) {
 
   useEffect(() => {
     if (noOfMatched === imagesItems.length) {
+      clearInterval(interval);
       setModalVisible(true);
     }
 
@@ -90,6 +101,8 @@ export default function EasyGameScreen({ navigation }) {
               setNoOfMatched={setNoOfMatched}
               setModalVisible={setModalVisible}
               initGame={initGame}
+              time={time}
+              setTime={setTime}
             ></WinModal>
           ) : (
             <>
