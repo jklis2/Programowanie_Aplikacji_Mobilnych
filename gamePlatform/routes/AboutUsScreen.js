@@ -25,7 +25,7 @@ export default function AboutUsScreen({ navigation }) {
           zmianę odkrywają dwie karty. Jeśli odkryte karty są identyczne, gracz
           zabiera je do swojego zdobytego zestawu. Jeśli nie, karty są z
           powrotem ukrywane, a kolejny gracz próbuje odnaleźć parę. Wygrywa
-          gracz, który zebrał najwięcej par.
+          gracz, który jak najszybciej odsłoni wszytskie pary!
         </Text>
 
         <Text style={styles.authors}>Autorzy: Mateusz Dziekan, Jakub Kliś</Text>
