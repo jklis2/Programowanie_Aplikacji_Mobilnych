@@ -13,7 +13,7 @@ import {
 
 const bgImage = require("../assets/rainbow-vortex.png");
 const level = "hard";
-export default function EasyGameScreen({ navigation }) {
+export default function HardGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 12);
@@ -83,7 +83,9 @@ export default function EasyGameScreen({ navigation }) {
           source={bgImage}
           resizeMode="cover"
           style={styles.background}
+          testID="background-image"
         >
+
           {modalVisible ? (
             <WinModal
               modalVisible={modalVisible}
@@ -99,8 +101,6 @@ export default function EasyGameScreen({ navigation }) {
                     {images.length ? (
                       <View style={styles.gameBlock}>
                         {images.map((image, key) => {
-                          {
-                          }
                           return (
                             <Card
                               level={level}

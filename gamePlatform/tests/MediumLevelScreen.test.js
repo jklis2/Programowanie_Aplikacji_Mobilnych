@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import EasyGameScreen from "../routes/EasyLevelScreen";
+import MediumGameScreen from "../routes/MediumLevelScreen";
 
 jest.mock("@react-native-async-storage/async-storage", () => ({
   getItem: jest.fn(),
@@ -14,14 +14,14 @@ const navigationMock = {
 
 describe('EasyGameScreen', () => {
   test('renders correctly', () => {
-    const { getByTestId } = render(<EasyGameScreen />);
+    const { getByTestId } = render(<MediumGameScreen />);
     const background = getByTestId('background-image');
     expect(background).toBeTruthy();
   });
 
   test('calls navigation.navigate when button is pressed', () => {
     const navigation = { navigate: jest.fn() };
-    const { getByText } = render(<EasyGameScreen navigation={navigation} />);
+    const { getByText } = render(<MediumGameScreen navigation={navigation} />);
     const backButton = getByText('Wróć do wyboru poziomu trudności');
     fireEvent.press(backButton);
     expect(navigation.navigate).toBeCalledWith('Levels');

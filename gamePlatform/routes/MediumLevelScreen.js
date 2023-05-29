@@ -13,7 +13,7 @@ import {
 
 const bgImage = require("../assets/rainbow-vortex.png");
 const level = "medium";
-export default function EasyGameScreen({ navigation }) {
+export default function MediumGameScreen({ navigation }) {
   const imagesItems = allMemoryImages
     .sort((a, b) => 0.5 - Math.random())
     .slice(0, 6);
@@ -83,6 +83,7 @@ export default function EasyGameScreen({ navigation }) {
           source={bgImage}
           resizeMode="cover"
           style={styles.background}
+          testID="background-image"
         >
           {modalVisible ? (
             <WinModal
