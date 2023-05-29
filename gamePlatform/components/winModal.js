@@ -80,7 +80,7 @@ export default function WinModal({
             <Text style={styles.modalText}>🏆 Najlepsze wyniki: 🏆</Text>
             {results.sort((a, b) => a.time - b.time).slice(0, 3).map((res, i) => (
               <Text key={res.id}>
-                {i+1} {res.name} -  {String(Math.trunc(res.time / 3600)).padStart(2, 0)}:
+                {i+1}. {res.name} -  {String(Math.trunc(res.time / 3600)).padStart(2, 0)}:
                 {String(Math.trunc(res.time / 60)).padStart(2, 0)}:
                 {String(res.time % 60).padStart(2, 0)}
               </Text>
